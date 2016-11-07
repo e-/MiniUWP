@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <style>
+      h1 {margin-top:20px; margin-bottom:20px;}
+      h2 {margin-bottom:20px;}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>MiniUWP</h1>
+      <p><a href="https://msdn.microsoft.com/en-us/library/dn975273.aspx">UWP (Universial Windows Platform)</a>은 윈도우 앱을 개발하기 위한 마이크로소프트의 개발 플랫폼입니다. 이번 주에는 아래의 명세를 참고하여 UWP의 일부를 구현해 봅시다. (* 과제 편의를 위해 실제 명세의 많은 부분이 수정되었습니다)</p>
+      <h2>Class Overview</h2>
+      <ul>
+        <li><a href="#u">UIElement</a>
+          <ul>
+            <li><a href="#fe">FrameworkElement</a>
+              <ul>
+                <li><a href="#p">Panel</a>
+                  <ul>
+                    <li><a href="g">Grid</a></li>
+                  </ul>
+                </li>
+                <li><a href="#s">Shapes</a>
+                  <ul>
+                    <li><a href="#r">Rectangle</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <h2 name="u">UIElement</h2>
+      <p><code>UIElement</code>는 MiniUWP에서 모든 요소들이 상속받는 부모 클래스입니다.</p>
+      <table class="table table-bordered table-striped">
+        <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>string</code></td>
+          <td><code>Name</code></td>
+          <td>요소의 이름을 설정하거나 가져옵니다.</td>
+        </tr>
+      </table>
+
+      <hr />
+      <h2 name="fe">FrameworkElement <small>&lt; <a href="u">UIElement</a>에서 상속</small></h2>
+      <p><code>FrameworkElement</code>는 화면에 그릴 수 있는 요소들을 나타냅니다.</p>
+      <table class="table table-bordered table-striped">
+        <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>double</code></td>
+          <td><code>Width</code></td>
+          <td>요소의 너비를 설정하거나 가져옵니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>double</code></td>
+          <td><code>Height</code></td>
+          <td>요소의 높이를 설정하거나 가져옵니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>double</code></td>
+          <td><code>OffsetLeft</code></td>
+          <td>화면의 왼쪽 모서리부터 요소까지의 거리를 설정하거나 가져옵니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>double</code></td>
+          <td><code>OffsetTop</code></td>
+          <td>화면의 위쪽 모서리부터 요소까지의 거리를 설정하거나 가져옵니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>int</code></td>
+          <td><code>GridCol = 1</code></td>
+          <td>부모가 <code>Grid</code> 요소인 경우 부모의 격자 상에서 현재 요소가 몇 번째 열에 위치하는지 나타냅니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>int</code></td>
+          <td><code>GridRow = 1</code></td>
+          <td>부모가 <code>Grid</code> 요소인 경우 부모의 격자 상에서 현재 요소가 몇 번째 행에 위치하는지 나타냅니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>void</code></td>
+          <td><code>UpdateLayout()</code></td>
+          <td>자식 요소들의 레이아웃을 업데이트 합니다. (<code>virtual</code>으로 선언하여 이 클래스 내부에서 구현하지는 않습니다.)</td>
+        </tr>
+      </table>
+
+      <hr />
+      <h2 name="p">Panel <small>&lt; <a href="#fe">FrameworkElement</a>에서 상속</small></h2>
+      <p><code>Panel</code>은 다른 요소들을 포함할 수 있는 요소들을 나타냅니다.</p>
+      <table class="table table-bordered table-striped">
+        <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>void</code></td>
+          <td><code>Add(FrameworkElement* child)</code></td>
+          <td>자식 요소를 하나 추가합니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>FrameworkElement*</code></td>
+          <td><code>Find(string name)</code></td>
+          <td><code>name</code>이라는 이름을 가진 자식 요소를 찾아 반환합니다. 없을 경우 <code>nullptr</code>을 반환합니다.</td>
+        </tr>
+        <tr>
+          <td><code>protected</code></td> 
+          <td><code>vector&lt;FrameworkElement*&gt;</code></td>
+          <td><code>children</code></td>
+          <td>자식 요소를 담는 벡터입니다.</td>
+        </tr>
+      </table>
+
+      <hr />
+      <h2 name="g">Grid <small>&lt; <a href="#p">Panel</a>에서 상속</small></h2>
+      <p><code>Grid</code>는 격자형 레이아웃을 나타냅니다.</p>
+      <table class="table table-bordered table-striped">
+        <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>vector&lt;int&gt;</code></td>
+          <td><code>Cols{1}</code></td>
+          <td><code>Grid</code>에 있는 각 열의 너비의 비율을 나타냅니다. 기본값은 전체 너비를 차지하는 하나의 열입니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>vector&lt;int&gt;</code></td>
+          <td><code>Rows{1}</code></td>
+          <td><code>Grid</code>에 있는 각 행의 높이의 비율을 나타냅니다. 기본값은 전체 높이를 차지하는 하나의 행입니다.</td>
+        </tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>void</code></td>
+          <td><code>UpdateLayout()</code></td>
+          <td>자식 요소들의 <code>Width</code>, <code>Height</code>, <code>OffsetLeft</code>, <code>OffsetTop</code>를 격자 레이아웃에 맞추어 업데이트 합니다.</td>
+        </tr>
+      </table>
+      <hr />
+      <h2 name="s">Shapes <small>&lt; <a href="#fe">FrameworkElement</a>에서 상속</small></h2>
+      <p>화면에 그려질 수 있는 여러가지 모양을 나타냅니다. 이 클래스는 다른 멤머 변수나 멤버 함수를 구현하지 않습니다.</p>
+      <hr />
+      <h2 name="r">Rectangle <small>&lt; <a href="#s">Shapes</a>에서 상속</small></h2>
+      <p>화면에 그려지는 사각형을 나타냅니다.</p>
+      <table class="table table-bordered table-striped">
+        <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
+        <tr>
+          <td><code>public</code></td> 
+          <td><code>string</code></td>
+          <td><code>Fill</code></td>
+          <td>사각형의 색깔을 나타내는 RGB코드 값입니다 (<code>#FF0000</code>).</td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+  </body>
+</html>
