@@ -25,7 +25,7 @@
               <ul>
                 <li><a href="#p">Panel</a>
                   <ul>
-                    <li><a href="g">Grid</a></li>
+                    <li><a href="#g">Grid</a></li>
                   </ul>
                 </li>
                 <li><a href="#s">Shapes</a>
@@ -39,7 +39,7 @@
         </li>
       </ul>
       <hr />
-      <h2 name="u">UIElement</h2>
+      <h2 id="u">UIElement</h2>
       <p><code>UIElement</code>는 MiniUWP에서 모든 요소들이 상속받는 부모 클래스입니다.</p>
       <table class="table table-bordered table-striped">
         <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
@@ -52,7 +52,7 @@
       </table>
 
       <hr />
-      <h2 name="fe">FrameworkElement <small>&lt; <a href="u">UIElement</a>에서 상속</small></h2>
+      <h2 id="fe">FrameworkElement <small>&lt; <a href="u">UIElement</a>에서 상속</small></h2>
       <p><code>FrameworkElement</code>는 화면에 그릴 수 있는 요소들을 나타냅니다.</p>
       <table class="table table-bordered table-striped">
         <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
@@ -96,12 +96,12 @@
           <td><code>public</code></td> 
           <td><code>void</code></td>
           <td><code>UpdateLayout()</code></td>
-          <td>자식 요소들의 레이아웃을 업데이트 합니다. (<code>virtual</code>으로 선언하여 이 클래스 내부에서 구현하지는 않습니다.)</td>
+          <td>자식 요소들의 레이아웃을 업데이트 합니다. (<code>virtual void UpdateLayout() {}</code>으로 선언하여 이 클래스 내부에서 구현하지는 않습니다.)</td>
         </tr>
       </table>
 
       <hr />
-      <h2 name="p">Panel <small>&lt; <a href="#fe">FrameworkElement</a>에서 상속</small></h2>
+      <h2 id="p">Panel <small>&lt; <a href="#fe">FrameworkElement</a>에서 상속</small></h2>
       <p><code>Panel</code>은 다른 요소들을 포함할 수 있는 요소들을 나타냅니다.</p>
       <table class="table table-bordered table-striped">
         <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
@@ -120,13 +120,13 @@
         <tr>
           <td><code>protected</code></td> 
           <td><code>vector&lt;FrameworkElement*&gt;</code></td>
-          <td><code>children</code></td>
+          <td><code>Children</code></td>
           <td>자식 요소를 담는 벡터입니다.</td>
         </tr>
       </table>
 
       <hr />
-      <h2 name="g">Grid <small>&lt; <a href="#p">Panel</a>에서 상속</small></h2>
+      <h2 id="g">Grid <small>&lt; <a href="#p">Panel</a>에서 상속</small></h2>
       <p><code>Grid</code>는 격자형 레이아웃을 나타냅니다.</p>
       <table class="table table-bordered table-striped">
         <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
@@ -150,10 +150,10 @@
         </tr>
       </table>
       <hr />
-      <h2 name="s">Shapes <small>&lt; <a href="#fe">FrameworkElement</a>에서 상속</small></h2>
-      <p>화면에 그려질 수 있는 여러가지 모양을 나타냅니다. 이 클래스는 다른 멤머 변수나 멤버 함수를 구현하지 않습니다.</p>
+      <h2 id="s">Shapes <small>&lt; <a href="#fe">FrameworkElement</a>에서 상속</small></h2>
+      <p>화면에 그려질 수 있는 여러가지 모양을 나타냅니다. 이 클래스는 다른 멤버 변수나 멤버 함수를 구현하지 않습니다.</p>
       <hr />
-      <h2 name="r">Rectangle <small>&lt; <a href="#s">Shapes</a>에서 상속</small></h2>
+      <h2 id="r">Rectangle <small>&lt; <a href="#s">Shapes</a>에서 상속</small></h2>
       <p>화면에 그려지는 사각형을 나타냅니다.</p>
       <table class="table table-bordered table-striped">
         <tr><th>권한</th><th>타입</th><th>이름</th><th>설명</th></tr>
